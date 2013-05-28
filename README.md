@@ -20,7 +20,7 @@ grunt.loadNpmTasks('grunt-gitInfo');
 ## The "gitInfo" task
 
 ### Overview
-In your project's Gruntfile, add a section named `gitInfo` to the data object passed into `grunt.initConfig()`.
+Inspired by grunt-svninfo. In your project's Gruntfile, add a section named `gitInfo` to the data object passed into `grunt.initConfig()`.
 Executing the task will populate grunt.config.gitInfo with repository data described below. You can use gitInfo object in your build as e.g. `<%= gitInfo.local.branch.current.SHA %>`.
 The resulting `gitInfo` object has the following structure:
 
