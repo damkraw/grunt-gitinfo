@@ -1,4 +1,4 @@
-# grunt-gitInfo
+# grunt-gitinfo
 
 > Get Git info from a working copy and populate grunt.config with the data
 
@@ -8,21 +8,21 @@ This plugin requires Grunt `~0.4.1`
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
 ```shell
-npm install grunt-gitInfo --save-dev
+npm install grunt-gitinfo --save-dev
 ```
 
 Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
 
 ```js
-grunt.loadNpmTasks('grunt-gitInfo');
+grunt.loadNpmTasks('grunt-gitinfo');
 ```
 
-## The "gitInfo" task
+## The "gitinfo" task
 
 ### Overview
-Inspired by grunt-svninfo. In your project's Gruntfile, add a section named `gitInfo` to the data object passed into `grunt.initConfig()`.
-Executing the task will populate grunt.config.gitInfo with repository data described below. You can use gitInfo object in your build as e.g. `<%= gitInfo.local.branch.current.SHA %>`.
-The resulting `gitInfo` object has the following structure:
+Inspired by grunt-svninfo. In your project's Gruntfile, add a section named `gitinfo` to the data object passed into `grunt.initConfig()`.
+Executing the task will populate grunt.config.gitinfo with repository data described below. You can use gitinfo object in your build as e.g. `<%= gitinfo.local.branch.current.SHA %>`.
+The resulting `gitinfo` object has the following structure:
 
 
 ```js

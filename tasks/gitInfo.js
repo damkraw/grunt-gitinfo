@@ -1,6 +1,6 @@
 /*
- * grunt-gitInfo
- * https://github.com/damkraw/grunt-gitInfo
+ * grunt-gitinfo
+ * https://github.com/damkraw/grunt-gitinfo
  *
  * Copyright (c) 2013 Damian Krawczyk
  * Licensed under the MIT license.
@@ -9,9 +9,9 @@
 'use strict';
 
 module.exports = function(grunt) {
-    grunt.registerTask('gitInfo', 'Your task description goes here.', function () {
+    grunt.registerTask('gitinfo', 'Your task description goes here.', function () {
         var done = this.async(),
-            gitInfo = {},
+            gitinfo = {},
 
             getCurrentBranchName = function () {
                 grunt.util.spawn({
@@ -21,8 +21,8 @@ module.exports = function(grunt) {
                   if (err) {
                       done();
                   } else {
-                      gitInfo.local.branch.current.name = result.stdout;
-                      grunt.config.set('gitInfo', gitInfo);
+                      gitinfo.local.branch.current.name = result.stdout;
+                      grunt.config.set('gitinfo', gitinfo);
                       done();
                   }
                 });
@@ -36,7 +36,7 @@ module.exports = function(grunt) {
                     if (err) {
                         done();
                     } else {
-                        gitInfo.remote = {
+                        gitinfo.remote = {
                             origin : {
                                 url : result.stdout
                             }
@@ -54,7 +54,7 @@ module.exports = function(grunt) {
                     if (err) {
                         done();
                     } else {
-                        gitInfo.local.branch.current.shortSHA = result.stdout;
+                        gitinfo.local.branch.current.shortSHA = result.stdout;
                         getRemoteOriginUrl();
                     }
                 });
@@ -67,7 +67,7 @@ module.exports = function(grunt) {
                     if (err) {
                         done();
                     } else {
-                        gitInfo.local = {
+                        gitinfo.local = {
                            branch : {
                                current : {
                                    SHA : result.stdout
