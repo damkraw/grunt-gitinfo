@@ -21,65 +21,44 @@ grunt.loadNpmTasks('grunt-gitInfo');
 
 ### Overview
 In your project's Gruntfile, add a section named `gitInfo` to the data object passed into `grunt.initConfig()`.
+Executing the task will populate grunt.config.gitInfo with repository data described below. You can use gitInfo object in your build as e.g. `<%= gitInfo.local.branch.current.SHA %>`.
+The resulting `gitInfo` object has the following structure:
+
 
 ```js
-grunt.initConfig({
-  gitInfo: {
-    options: {
-      // Task-specific options go here.
+{
+    local : {
+        branch : {
+            current : {
+                SHA      : "Current HEAD SHA",
+                shortSHA : "Current HEAD short SHA",
+                name     : "Current branch name"
+            }
+        }
     },
-    your_target: {
-      // Target-specific file lists and/or options go here.
-    },
-  },
-})
+    remote : {
+        origin : {
+            url : "Branch Url"
+        }
+    }
+}
 ```
 
 ### Options
 
-#### options.separator
+#### cwd
 Type: `String`
-Default value: `',  '`
 
-A string value that is used to do something with whatever.
+Allows to specify a cwd (current working directory) path repository. The default directory is the where you run grunt from (`'.'`).
 
-#### options.punctuation
-Type: `String`
-Default value: `'.'`
-
-A string value that is used to do something else with whatever else.
-
-### Usage Examples
-
-#### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
-
-```js
-grunt.initConfig({
-  gitInfo: {
-    options: {},
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
+Example:
+``` js
+gruntInfo: {
+  options: {
+    cwd: './myproject/ishere'
   },
-})
-```
-
-#### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
-
-```js
-grunt.initConfig({
-  gitInfo: {
-    options: {
-      separator: ': ',
-      punctuation: ' !!!',
-    },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-})
+  ...
+}
 ```
 
 ## Contributing
