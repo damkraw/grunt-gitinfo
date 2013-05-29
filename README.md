@@ -53,7 +53,7 @@ Allows to specify a cwd (current working directory) path repository. The default
 
 Example:
 ``` js
-gruntInfo: {
+gitinfo: {
   options: {
     cwd: './myproject/ishere'
   },
