@@ -45,7 +45,33 @@ module.exports = function(grunt) {
                     }
                 });
             },
-
+            
+            getLastCommitTime = function () {
+                grunt.util.spawn({
+                    cmd : 'git',
+                    args : ['log', '--format="%ai"', '-n1', 'HEAD']
+                }, function (err, result) {
+                    if (err) {
+                        done();
+                    } else {
+                        gitinfo.local.branch.current.lastCommitTime = result.stdout;
+                        getRemoteOriginUrl();
+                    }
+                });
+            },
+            getLastCommitAuthor = function () {
+                grunt.util.spawn({
+                    cmd : 'git',
+                    args : ['log', '--format="%aN"', '-n1', 'HEAD']
+                }, function (err, result) {
+                    if (err) {
+                        done();
+                    } else {
+                        gitinfo.local.branch.current.lastCommitAuthor = result.stdout;
+                        getLastCommitTime();
+                    }
+                });
+            },
             getShortSHA = function () {
                 grunt.util.spawn({
                     cmd : 'git',
@@ -55,7 +81,7 @@ module.exports = function(grunt) {
                         done();
                     } else {
                         gitinfo.local.branch.current.shortSHA = result.stdout;
-                        getRemoteOriginUrl();
+                        getLastCommitAuthor();
                     }
                 });
             },
