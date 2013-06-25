@@ -2,7 +2,7 @@
  * grunt-gitinfo
  * https://github.com/damkraw/grunt-gitinfo
  *
- * Copyright (c) 2013 Damian Krawczyk
+ * Copyright (c) 2013 Damian Krawczyk, Maciej Lisiewski
  * Licensed under the MIT license.
  */
 
