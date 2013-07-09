@@ -52,7 +52,6 @@ module.exports = function(grunt) {
 
         function fin() {
             grunt.config.set('gitinfo', gitinfo);
-                console.log("[gitinfo]:", JSON.stringify(gitinfo, null, 2));
             done();
         }
 
