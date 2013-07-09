@@ -34,7 +34,7 @@ module.exports = function(grunt) {
                     args : ['config', '--get-all', 'remote.origin.url']
                 }, function (err, result) {
                     if (err) {
-                        done();
+                        console.warn("Git: couldn't get config: remote.origin.url");
                     } else {
                         gitinfo.remote = {
                             origin : {
