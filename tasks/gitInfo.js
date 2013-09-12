@@ -97,8 +97,24 @@ module.exports = function(grunt) {
                     done();
                 } else {
                     gitinfo.local.branch.current.shortSHA = result.stdout;
-                    getLastCommitAuthor();
+                    getTag();
                 }
+            });
+        },
+        getTag = function () {
+            grunt.util.spawn({
+                cmd : 'git',
+                args : ['describe', '--abbrev=0', '--exact-match'],
+                opts : {
+                    cwd : gitinfo.options.cwd
+                }
+            }, function (err, result) {
+                if (err) {
+                    gitinfo.local.branch.current.lastTag = undefined;
+                } else {
+                    gitinfo.local.branch.current.shortSHA = result.stdout;
+                }
+                getLastCommitAuthor();
             });
         },
         getSHA = function () {
