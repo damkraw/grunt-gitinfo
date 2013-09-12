@@ -110,9 +110,9 @@ module.exports = function(grunt) {
                 }
             }, function (err, result) {
                 if (err) {
-                    gitinfo.local.branch.current.lastTag = undefined;
+                    gitinfo.local.branch.current.tag = undefined;
                 } else {
-                    gitinfo.local.branch.current.shortSHA = result.stdout;
+                    gitinfo.local.branch.current.tag = result.stdout;
                 }
                 getLastCommitAuthor();
             });
