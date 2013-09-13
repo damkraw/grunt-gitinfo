@@ -81,6 +81,22 @@ module.exports = function(grunt) {
                     done();
                 } else {
                     gitinfo.local.branch.current.lastCommitAuthor = result.stdout;
+                    getCurrentUser();
+                }
+            });
+        },
+        getCurrentUser = function () {
+            grunt.util.spawn({
+                cmd : 'git',
+                args : ['config', '--global', 'user.name'],
+                opts : {
+                    cwd : gitinfo.options.cwd
+                }
+            }, function (err, result) {
+                if (err) {
+                    done();
+                } else {
+                    gitinfo.local.branch.current.currentUser = result.stdout;
                     getLastCommitTime();
                 }
             });
