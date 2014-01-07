@@ -42,7 +42,7 @@ module.exports = function(grunt) {
                         ref[keys.pop()] = result.stdout;
 
                         if (grunt.option("debug") || grunt.option("verbose")) {
-                            console.log("[gitinfo]:", conf_key, "=", gitinfo[conf_key]);
+                            console.log("[gitinfo]:", conf_key, "=", result.stdout);
                         }
                     }
 
