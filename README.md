@@ -30,9 +30,12 @@ The resulting `gitinfo` object has the following structure:
     local : {
         branch : {
             current : {
-                SHA      : "Current HEAD SHA",
-                shortSHA : "Current HEAD short SHA",
-                name     : "Current branch name"
+                SHA              : "Current HEAD SHA",
+                shortSHA         : "Current HEAD short SHA",
+                name             : "Current branch name",
+                currentUser      : "Current git user" ,
+                lastCommitTime   : "Last commit time",
+                lastCommitAuthor : "Last commit author"
             }
         }
     },
