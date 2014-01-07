@@ -13,32 +13,35 @@ module.exports = function(grunt) {
         var done = this.async(),
         gitinfo = {},
         commands = {
-            'local.branch.current.name': ['rev-parse', '--abbrev-ref', 'HEAD'],
-            'remote.origin.url': ['config', '--get-all', 'remote.origin.url'],
-            'local.branch.current.SHA': ['rev-parse', 'HEAD'],
-            'local.branch.current.shortSHA': ['rev-parse', '--short', 'HEAD'],
+            'local.branch.current.name'     : ['rev-parse', '--abbrev-ref', 'HEAD'],
+            'local.branch.current.SHA'      : ['rev-parse', 'HEAD'],
+            'local.branch.current.shortSHA' : ['rev-parse', '--short', 'HEAD'],
+            'remote.origin.url'             : ['config', '--get-all', 'remote.origin.url']
         };
 
         function work(conf_key, cb) {
             var spawn_args = commands[conf_key];
 
-            grunt.util.spawn({
-                    cmd: 'git',
-                    args: spawn_args},
+            grunt.util.spawn(
+                {
+                    cmd  : 'git',
+                    args : spawn_args
+                },
                 function (err, result) {
                     if (err) {
                         console.warn("[gitinfo]: couldn't set config:", conf_key);
                     } else {
                         var ref = gitinfo, keys = conf_key.split(".");
                         for (var i = 0; i < keys.length-1; i++) {
-                          var key = keys[i];
+                            var key = keys[i];
 
-                          if (!ref[key]) {
-                            ref[key] = {};
-                          }
+                            if (ref[key] === undefined) {
+                                ref[key] = {};
+                            }
 
-                          ref = ref[key];
+                            ref = ref[key];
                         }
+
                         ref[keys.pop()] = result.stdout;
 
                         if (grunt.option("debug") || grunt.option("verbose")) {
@@ -47,7 +50,7 @@ module.exports = function(grunt) {
                     }
 
                     cb();
-                });
+            });
         }
 
         function fin() {
@@ -57,4 +60,4 @@ module.exports = function(grunt) {
 
         grunt.util.async.forEach(grunt.util._.keys(commands), work, fin);
     });
-}
+};
