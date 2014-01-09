@@ -68,6 +68,8 @@ module.exports = function (grunt) {
                 done();
             };
 
+        grunt.verbose.writeflags(config.options, 'config.options');
+
         grunt.util.async.forEach(grunt.util._.keys(commands), work, fin);
     });
 };
