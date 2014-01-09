@@ -11,10 +11,20 @@
 
 module.exports = function (grunt) {
     'use strict';
+
+    var extend = require('node.extend');
+
     grunt.registerTask('gitinfo', 'Your task description goes here.', function () {
         var done = this.async(),
             gitinfo = {},
-            config = grunt.config.get('gitinfo'),
+
+            // Retrieve our config object, filling in missing items with defaults.
+            config = extend(true, {
+                options: {
+                    cwd: null
+                }
+            }, grunt.config.get('gitinfo')),
+
             commands = {
                 'local.branch.current.name'             : ['rev-parse', '--abbrev-ref', 'HEAD'],
                 'local.branch.current.SHA'              : ['rev-parse', 'HEAD'],
@@ -34,7 +44,7 @@ module.exports = function (grunt) {
                         cmd  : 'git',
                         args : spawn_args,
                         opts : {
-                            cwd : (config.options && config.options.cwd) ? config.options.cwd : null
+                            cwd : config.options.cwd
                         }
                     },
                     function (err, result) {
@@ -67,6 +77,8 @@ module.exports = function (grunt) {
                 grunt.config.set('gitinfo', gitinfo);
                 done();
             };
+
+        grunt.verbose.writeflags(config.options, 'config.options');
 
         grunt.util.async.forEach(grunt.util._.keys(commands), work, fin);
     });
