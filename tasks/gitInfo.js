@@ -14,7 +14,7 @@ module.exports = function (grunt) {
     grunt.registerTask('gitinfo', 'Gather information about the host git repository.', function () {
         var done = this.async(),
             gitinfo = {},
-            config = grunt.config.get('gitinfo'),
+            config = grunt.config.get('gitinfo') || {},
             commands = {
                 'local.branch.current.name'             : ['rev-parse', '--abbrev-ref', 'HEAD'],
                 'local.branch.current.SHA'              : ['rev-parse', 'HEAD'],
