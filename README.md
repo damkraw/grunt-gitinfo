@@ -43,7 +43,8 @@ The resulting `gitinfo` object has the following structure:
         origin : {
             url : "Branch Url"
         }
-    }
+    },
+    (custom command values)
 }
 ```
 
@@ -57,12 +58,29 @@ Allows to specify a cwd (current working directory) path repository. The default
 Example:
 ``` js
 gitinfo: {
-  options: {
-    cwd: './myproject/ishere'
-  },
-  ...
+    options: {
+        cwd: './myproject/ishere'
+    },
+    ...
 }
 ```
+
+### Custom commands
+
+Type: `Object`
+
+Allows to specify a custom git command.
+
+Example:
+``` js
+gitinfo: {
+    commands: {
+        'my.custom.command' : ['arg1', 'arg2', (...)] // git arg1 arg2 (...)
+    }
+}
+```
+
+This will populate `<%= gitinfo.my.custom.command %>` with `git arg1 arg2` output.
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).

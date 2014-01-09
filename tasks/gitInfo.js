@@ -7,37 +7,40 @@
  */
 
 // JSLint
-/*global module, console*/
+/*global module, require, console*/
+/*jslint nomen: true */
 
 module.exports = function (grunt) {
     'use strict';
 
-    var extend = require('node.extend');
+    var _ = require('lodash'),
+        async = require('async'),
+        getobject = require('getobject');
 
-    grunt.registerTask('gitinfo', 'Your task description goes here.', function () {
+    grunt.registerTask('gitinfo', 'Gather information about the git repository.', function () {
         var done = this.async(),
             gitinfo = {},
 
             // Retrieve our config object, filling in missing items with defaults.
-            config = extend(true, {
+            config = _.merge({
                 options: {
                     cwd: null
+                },
+                commands : {
+                    'local.branch.current.name'             : ['rev-parse', '--abbrev-ref', 'HEAD'],
+                    'local.branch.current.SHA'              : ['rev-parse', 'HEAD'],
+                    'local.branch.current.shortSHA'         : ['rev-parse', '--short', 'HEAD'],
+                    'local.branch.current.currentUser'      : ['config', '--global', 'user.name'],
+                    'local.branch.current.lastCommitTime'   : ['log', '--format="%ai"', '-n1', 'HEAD'],
+                    'local.branch.current.lastCommitAuthor' : ['log', '--format="%aN"', '-n1', 'HEAD'],
+                    'local.branch.current.tag'              : ['describe', '--abbrev=0', '--exact-match'],
+                    'remote.origin.url'                     : ['config', '--get-all', 'remote.origin.url']
                 }
             }, grunt.config.get('gitinfo')),
 
-            commands = {
-                'local.branch.current.name'             : ['rev-parse', '--abbrev-ref', 'HEAD'],
-                'local.branch.current.SHA'              : ['rev-parse', 'HEAD'],
-                'local.branch.current.shortSHA'         : ['rev-parse', '--short', 'HEAD'],
-                'local.branch.current.currentUser'      : ['config', '--global', 'user.name'],
-                'local.branch.current.lastCommitTime'   : ['log', '--format="%ai"', '-n1', 'HEAD'],
-                'local.branch.current.lastCommitAuthor' : ['log', '--format="%aN"', '-n1', 'HEAD'],
-                'local.branch.current.tag'              : ['describe', '--abbrev=0', '--exact-match'],
-                'remote.origin.url'                     : ['config', '--get-all', 'remote.origin.url']
-            },
 
             work = function (conf_key, cb) {
-                var spawn_args = commands[conf_key];
+                var spawn_args = config.commands[conf_key];
 
                 grunt.util.spawn(
                     {
@@ -51,18 +54,7 @@ module.exports = function (grunt) {
                         if (err) {
                             console.warn("[gitinfo]: couldn't set config:", conf_key);
                         } else {
-                            var ref = gitinfo, keys = conf_key.split("."), i, key;
-                            for (i = 0; i < keys.length - 1; i += 1) {
-                                key = keys[i];
-
-                                if (ref[key] === undefined) {
-                                    ref[key] = {};
-                                }
-
-                                ref = ref[key];
-                            }
-
-                            ref[keys.pop()] = result.stdout;
+                            getobject.set(gitinfo, conf_key, result.stdout);
 
                             if (grunt.option("debug") || grunt.option("verbose")) {
                                 console.log("[gitinfo]:", conf_key, "=", result.stdout);
@@ -80,6 +72,6 @@ module.exports = function (grunt) {
 
         grunt.verbose.writeflags(config.options, 'config.options');
 
-        grunt.util.async.forEach(grunt.util._.keys(commands), work, fin);
+        async.forEach(_.keys(config.commands), work, fin);
     });
 };
