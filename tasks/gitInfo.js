@@ -2,7 +2,7 @@
  * grunt-gitinfo
  * https://github.com/damkraw/grunt-gitinfo
  *
- * Copyright (c) 2013 Damian Krawczyk, Corey Jewett, Maciej Lisiewski
+ * Copyright (c) 2013 Damian Krawczyk, Corey Jewett, Maciej Lisiewski, Tom Gault
  * Licensed under the MIT license.
  */
 
@@ -11,7 +11,7 @@
 
 module.exports = function (grunt) {
     'use strict';
-    grunt.registerTask('gitinfo', 'Your task description goes here.', function () {
+    grunt.registerTask('gitinfo', 'Gather information about the host git repository.', function () {
         var done = this.async(),
             gitinfo = {},
             config = grunt.config.get('gitinfo'),
