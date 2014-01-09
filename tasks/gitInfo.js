@@ -34,7 +34,7 @@ module.exports = function (grunt) {
                         cmd  : 'git',
                         args : spawn_args,
                         opts : {
-                            cwd : (config.options && config.options.cwd) ? config.options.cwd : null
+                            cwd : config.options.cwd
                         }
                     },
                     function (err, result) {
@@ -67,6 +67,9 @@ module.exports = function (grunt) {
                 grunt.config.set('gitinfo', gitinfo);
                 done();
             };
+
+        config.options = config.options !== undefined ? config.options : {};
+        config.options.cwd = config.options.cwd !== undefined ? config.options.cwd : null;
 
         grunt.verbose.writeflags(config.options, 'config.options');
 
