@@ -66,7 +66,8 @@ module.exports = function (grunt) {
             },
 
             fin = function () {
-                grunt.config.set('gitinfo', gitinfo);
+                var merged = _.defaults(gitinfo, grunt.config.get('gitinfo'));
+                grunt.config.set('gitinfo', merged);
                 done();
             };
 
