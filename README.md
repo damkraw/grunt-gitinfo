@@ -36,6 +36,7 @@ The resulting `gitinfo` object has the following structure:
                 currentUser      : "Current git user" ,
                 lastCommitTime   : "Last commit time",
                 lastCommitAuthor : "Last commit author"
+                tag              : "Name of tag associated with last commit if present"
             }
         }
     },
