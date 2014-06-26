@@ -30,6 +30,7 @@ module.exports = function (grunt) {
                     'local.branch.current.name'             : ['rev-parse', '--abbrev-ref', 'HEAD'],
                     'local.branch.current.SHA'              : ['rev-parse', 'HEAD'],
                     'local.branch.current.shortSHA'         : ['rev-parse', '--short', 'HEAD'],
+                    'local.branch.current.currentUser'      : ['config', '--global', 'user.name'],
                     'local.branch.current.lastCommitTime'   : ['log', '--format="%ai"', '-n1', 'HEAD'],
                     'local.branch.current.lastCommitAuthor' : ['log', '--format="%aN"', '-n1', 'HEAD'],
                     'local.branch.current.tag'              : ['describe', '--abbrev=0', '--exact-match'],
