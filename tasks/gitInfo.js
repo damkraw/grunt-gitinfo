@@ -2,7 +2,7 @@
  * grunt-gitinfo
  * https://github.com/damkraw/grunt-gitinfo
  *
- * Copyright (c) 2013 Damian Krawczyk, Corey Jewett, Maciej Lisiewski, Tom Gault
+ * Copyright (c) 2013 Damian Krawczyk, Corey Jewett, Maciej Lisiewski, Tom Gault, kolya-ay, nerdgore
  * Licensed under the MIT license.
  */
 
@@ -34,7 +34,6 @@ module.exports = function (grunt) {
                     'local.branch.current.lastCommitTime'   : ['log', '--format="%ai"', '-n1', 'HEAD'],
                     'local.branch.current.lastCommitAuthor' : ['log', '--format="%aN"', '-n1', 'HEAD'],
                     'local.branch.current.lastCommitNumber' : ['rev-list', '--count', 'HEAD'],
-                    'local.branch.current.tag'              : ['describe', '--abbrev=0', '--exact-match'],
                     'remote.origin.url'                     : ['config', '--get-all', 'remote.origin.url']
                 }
             }, grunt.config.get('gitinfo')),
