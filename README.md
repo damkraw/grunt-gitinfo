@@ -87,4 +87,12 @@ This will populate `<%= gitinfo.my.custom.command %>` with `git arg1 arg2` outpu
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
-_(Nothing yet)_
+0.1.5
+-----
+- Removed tag from commands list
+- \#13 Adding lastCommitNumber command
+- \#12 Logging through grunt.log API
+- \#9 Extend existing gitinfo config
+
+
+
