@@ -34,6 +34,7 @@ module.exports = function (grunt) {
                     'local.branch.current.lastCommitTime'   : ['log', '--format="%ai"', '-n1', 'HEAD'],
                     'local.branch.current.lastCommitAuthor' : ['log', '--format="%aN"', '-n1', 'HEAD'],
                     'local.branch.current.lastCommitNumber' : ['rev-list', '--count', 'HEAD'],
+                    'local.branch.current.tag'              : ['describe', '--tags', '--exact-match'],
                     'remote.origin.url'                     : ['config', '--get-all', 'remote.origin.url']
                 }
             }, grunt.config.get('gitinfo')),
@@ -69,6 +70,10 @@ module.exports = function (grunt) {
 
             fin = function () {
                 var merged = _.defaults(gitinfo, grunt.config.get('gitinfo'));
+                merged.getTagOrBranchName = function() {
+                    return this.local.branch.current.tag ||
+                        this.local.branch.current.name;
+                };
                 grunt.config.set('gitinfo', merged);
                 done();
             };
