@@ -34,6 +34,7 @@ module.exports = function (grunt) {
                     'local.branch.current.lastCommitTime'   : ['log', '--format="%ai"', '-n1', 'HEAD'],
                     'local.branch.current.lastCommitAuthor' : ['log', '--format="%aN"', '-n1', 'HEAD'],
                     'local.branch.current.lastCommitNumber' : ['rev-list', '--count', 'HEAD'],
+                    'local.branch.current.tag'              : ['describe', '--tags', '--exact-match'],
                     'remote.origin.url'                     : ['config', '--get-all', 'remote.origin.url']
                 }
             }, grunt.config.get('gitinfo')),
