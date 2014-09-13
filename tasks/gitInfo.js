@@ -56,11 +56,12 @@ module.exports = function (grunt) {
                         } else {
                             getobject.set(gitinfo, conf_key, result.stdout);
 
-                            if (grunt.option("verbose"))
+                            if (grunt.option("verbose")) {
                                 // could be unnecessary
                                 grunt.verbose.ok(conf_key, "=", result.stdout);
-                            else
+                            } else {
                                 grunt.log.debug(conf_key, "=", result.stdout);
+                            }
                         }
                         cb();
                     }
