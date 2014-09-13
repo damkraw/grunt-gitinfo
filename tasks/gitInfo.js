@@ -70,6 +70,10 @@ module.exports = function (grunt) {
 
             fin = function () {
                 var merged = _.defaults(gitinfo, grunt.config.get('gitinfo'));
+                merged.getTagOrBranchName = function() {
+                    return this.local.branch.current.tag ||
+                        this.local.branch.current.name;
+                };
                 grunt.config.set('gitinfo', merged);
                 done();
             };
