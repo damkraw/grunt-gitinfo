@@ -75,6 +75,6 @@ module.exports = function (grunt) {
 
         grunt.verbose.writeflags(config.options, 'config.options');
 
-        async.forEach(_.keys(config.commands), work, fin);
+        async.each(_.keys(config.commands), work, fin);
     });
 };
