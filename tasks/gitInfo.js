@@ -2,7 +2,7 @@
  * grunt-gitinfo
  * https://github.com/damkraw/grunt-gitinfo
  *
- * Copyright (c) 2013 Damian Krawczyk, Corey Jewett, Maciej Lisiewski, Tom Gault, kolya-ay, nerdgore, madarche, drasive
+ * Copyright (c) 2013 Damian Krawczyk, Corey Jewett, Maciej Lisiewski, Tom Gault, kolya-ay, nerdgore, madarche, Dimitri Vranken
  * Licensed under the MIT license.
  */
 
@@ -55,13 +55,19 @@ module.exports = function (grunt) {
                         if (err) {
                             grunt.log.debug("Couldn't set config:", conf_key);
                         } else {
-                            getobject.set(gitinfo, conf_key, result.stdout);
+                            var result = result.stdout;
+                            if (result.charAt(0) === '"' && result.charAt(result.length - 1) === '"') { // The first and last character are quotes (")
+                                grunt.log.debug("Stripping the leading and trailing quotes from the result:", result);
+                                result = result.substring(1, result.length - 1); // Remove the first and last character (the quotes)
+                            }
+                            
+                            getobject.set(gitinfo, conf_key, result);
 
                             if (grunt.option("verbose")) {
                                 // could be unnecessary
-                                grunt.verbose.ok(conf_key, "=", result.stdout);
+                                grunt.verbose.ok(conf_key, "=", result);
                             } else {
-                                grunt.log.debug(conf_key, "=", result.stdout);
+                                grunt.log.debug(conf_key, "=", result);
                             }
                         }
                         cb();
