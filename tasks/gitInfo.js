@@ -27,14 +27,15 @@ module.exports = function (grunt) {
                     cwd: null
                 },
                 commands : {
-                    'local.branch.current.name'             : ['rev-parse', '--abbrev-ref', 'HEAD'],
-                    'local.branch.current.SHA'              : ['rev-parse', 'HEAD'],
-                    'local.branch.current.shortSHA'         : ['rev-parse', '--short', 'HEAD'],
-                    'local.branch.current.currentUser'      : ['config', '--global', 'user.name'],
-                    'local.branch.current.lastCommitTime'   : ['log', '--format="%ai"', '-n1', 'HEAD'],
-                    'local.branch.current.lastCommitAuthor' : ['log', '--format="%aN"', '-n1', 'HEAD'],
-                    'local.branch.current.lastCommitNumber' : ['rev-list', '--count', 'HEAD'],
-                    'remote.origin.url'                     : ['config', '--get-all', 'remote.origin.url']
+                    'local.branch.current.name'              : ['rev-parse', '--abbrev-ref', 'HEAD'],
+                    'local.branch.current.SHA'               : ['rev-parse', 'HEAD'],
+                    'local.branch.current.shortSHA'          : ['rev-parse', '--short', 'HEAD'],
+                    'local.branch.current.currentUser'       : ['config', '--global', 'user.name'],
+                    'local.branch.current.lastCommitTime'    : ['log', '--format="%ai"', '-n1', 'HEAD'],
+                    'local.branch.current.lastCommitMessage' : ['log', '--format="%B"', '-n1', 'HEAD'],
+                    'local.branch.current.lastCommitAuthor'  : ['log', '--format="%aN"', '-n1', 'HEAD'],
+                    'local.branch.current.lastCommitNumber'  : ['rev-list', '--count', 'HEAD'],
+                    'remote.origin.url'                      : ['config', '--get-all', 'remote.origin.url']
                 }
             }, grunt.config.get('gitinfo')),
 
