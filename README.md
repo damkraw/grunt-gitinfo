@@ -37,7 +37,8 @@ The resulting `gitinfo` object has the following structure:
                 lastCommitTime    : "Last commit time",
                 lastCommitMessage : "Last commit message",
                 lastCommitAuthor  : "Last commit author",
-                lastCommitNumber  : "Last commit number"
+                lastCommitNumber  : "Last commit number",
+                lastTag           : "Last tag"
             }
         }
     },
