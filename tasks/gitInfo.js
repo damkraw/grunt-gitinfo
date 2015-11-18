@@ -27,6 +27,7 @@ module.exports = function (grunt) {
                     cwd: null
                 },
                 commands : {
+                    'local.tag.current.name'                 : ['describe', '--tags', '--exact-match'],
                     'local.branch.current.name'              : ['rev-parse', '--abbrev-ref', 'HEAD'],
                     'local.branch.current.SHA'               : ['rev-parse', 'HEAD'],
                     'local.branch.current.shortSHA'          : ['rev-parse', '--short', 'HEAD'],
@@ -54,6 +55,7 @@ module.exports = function (grunt) {
                     function (err, result) {
                         if (err) {
                             grunt.log.debug("Couldn't set config:", conf_key);
+                            getobject.set(gitinfo, conf_key, "");
                         } else {
                             getobject.set(gitinfo, conf_key, result.stdout);
 
