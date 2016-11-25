@@ -28,6 +28,11 @@ The resulting `gitinfo` object has the following structure:
 ```js
 {
     local : {
+        tag : {
+            current : {
+                name              : "Current tag name (if not extact match tag then empty)",
+            }
+        },
         branch : {
             current : {
                 SHA               : "Current HEAD SHA",
