@@ -88,6 +88,10 @@ This will populate `<%= gitinfo.my.custom.command %>` with `git arg1 arg2` outpu
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
+0.1.9
+-----
+- \#35 Update peerDependencies
+
 0.1.8
 -----
 - \#30 Update peerDependencies to support Grunt 1.0

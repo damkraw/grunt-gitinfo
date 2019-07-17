@@ -1,7 +1,7 @@
 {
   "name": "grunt-gitinfo",
   "description": "Get Git info from a working copy and populate grunt.config with the data",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "homepage": "https://github.com/damkraw/grunt-gitinfo",
   "author": {
     "name": "Damian Krawczyk",
@@ -25,15 +25,15 @@
     "node": ">= 0.8.0"
   },
   "dependencies": {
-    "lodash": "~2.4.1",
     "async": "~0.9.0",
-    "getobject": "~0.1.0"
+    "getobject": "~0.1.0",
+    "lodash": "^4.17.14"
   },
   "devDependencies": {
-    "grunt": "^0.4.5",
+    "grunt": "^1.0.4",
     "grunt-contrib-clean": "~0.6.0",
-    "grunt-contrib-jshint": "~0.10.0",
-    "grunt-contrib-nodeunit": "^0.4.1"
+    "grunt-contrib-jshint": "^2.1.0",
+    "grunt-contrib-nodeunit": "^2.0.0"
   },
   "peerDependencies": {
     "grunt": ">=0.4.0"
