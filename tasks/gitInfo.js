@@ -24,7 +24,8 @@ module.exports = function (grunt) {
             // Retrieve our config object, filling in missing items with defaults.
             config = _.merge({
                 options: {
-                    cwd: null
+                    cwd: null,
+                    sh: false
                 },
                 commands : {
                     'local.branch.current.name'              : ['rev-parse', '--abbrev-ref', 'HEAD'],
@@ -42,11 +43,11 @@ module.exports = function (grunt) {
 
             work = function (conf_key, cb) {
                 var spawn_args = config.commands[conf_key];
-
+                var sh = config.options.sh;
                 grunt.util.spawn(
                     {
-                        cmd  : 'git',
-                        args : spawn_args,
+                        cmd  : sh?'sh':'git',
+                        args : sh?['-c','git '+spawn_args.join(' ')]:spawn_args,
                         opts : {
                             cwd : config.options.cwd
                         }
