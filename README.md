@@ -33,6 +33,7 @@ The resulting `gitinfo` object has the following structure:
                 SHA               : "Current HEAD SHA",
                 shortSHA          : "Current HEAD short SHA",
                 name              : "Current branch name",
+                tag               : "Current tag name",
                 currentUser       : "Current git user",
                 lastCommitTime    : "Last commit time",
                 lastCommitMessage : "Last commit message",
