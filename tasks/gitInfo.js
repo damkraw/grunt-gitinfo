@@ -53,6 +53,7 @@ module.exports = function (grunt) {
                     },
                     function (err, result) {
                         if (err) {
+                            grunt.log.debug("Error", err);
                             grunt.log.debug("Couldn't set config:", conf_key);
                         } else {
                             getobject.set(gitinfo, conf_key, result.stdout);
