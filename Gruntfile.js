@@ -13,7 +13,8 @@ module.exports = function(grunt) {
     jshint: {
       all: [
         'Gruntfile.js',
-        'tasks/*.js'
+        'tasks/*.js',
+        'test/*.js'
       ],
       options: {
         jshintrc: '.jshintrc'
@@ -31,6 +32,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
 
 
-  // By default, lint and run all tests.
+  // By default, lint and run the task against the current repository.
   grunt.registerTask('default', ['jshint', 'gitinfo']);
 };

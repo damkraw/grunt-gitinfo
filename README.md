@@ -3,7 +3,7 @@
 > Get Git info from a working copy and populate grunt.config with the data
 
 ## Getting Started
-This plugin requires Grunt `>=0.4.0`
+This plugin requires Node.js `>=10` and Grunt `>=0.4.0`.
 
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
@@ -84,10 +84,18 @@ gitinfo: {
 
 This will populate `<%= gitinfo.my.custom.command %>` with `git arg1 arg2` output.
 
+Git output uses `&lt;%` in place of `<%` so Grunt's default template processor treats it as text. Verbose and debug logs report the command's configuration key without printing its output.
+
 ## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
+In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Run `npm ci` and `npm test` with Node.js `>=16` and npm `>=8.3` to install, lint, and test the project.
 
 ## Release History
+0.2.0
+-----
+- Fix #40 by updating `getobject` and patch the development dependency tree.
+- Escape Grunt template openers in Git output and omit raw Git output from logs.
+- Require Node.js 10 or newer.
+
 0.1.9
 -----
 - \#35 Update peerDependencies

@@ -55,13 +55,12 @@ module.exports = function (grunt) {
                         if (err) {
                             grunt.log.debug("Couldn't set config:", conf_key);
                         } else {
-                            getobject.set(gitinfo, conf_key, result.stdout);
-
-                            if (grunt.option("verbose")) {
-                                // could be unnecessary
-                                grunt.verbose.ok(conf_key, "=", result.stdout);
+                            // Grunt treats its default template opener as executable syntax.
+                            getobject.set(gitinfo, conf_key, result.stdout.replace(/<%/g, '&lt;%'));
+                            if (grunt.option('verbose')) {
+                                grunt.verbose.ok('Set config:', conf_key);
                             } else {
-                                grunt.log.debug(conf_key, "=", result.stdout);
+                                grunt.log.debug('Set config:', conf_key);
                             }
                         }
                         cb();
