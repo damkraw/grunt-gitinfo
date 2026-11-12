@@ -28,6 +28,7 @@ module.exports = function (grunt) {
                 },
                 commands : {
                     'local.branch.current.name'              : ['rev-parse', '--abbrev-ref', 'HEAD'],
+                    'local.branch.current.tag'               : ['tag', '--points-at', 'HEAD'],
                     'local.branch.current.SHA'               : ['rev-parse', 'HEAD'],
                     'local.branch.current.shortSHA'          : ['rev-parse', '--short', 'HEAD'],
                     'local.branch.current.currentUser'       : ['config', '--global', 'user.name'],
